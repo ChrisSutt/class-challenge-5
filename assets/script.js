@@ -20,29 +20,43 @@ $(document).ready(function () {
  
   
     let textSave = $('.saveBtn');
+
+
     textSave.on('click', function () {
-    console.log(textSave);
+    var divId = $(this).closest('div').attr('id');
+    let x = $('#' + divId).find('textarea').val();
+
+    localStorage.setItem(divId, x);
+    console.log(divId);
+    console.log(x);
     })
+
+    function loadLocalData(t) {
+      let loadText = localStorage.getItem('hour-' + t);
+
+      return loadText;
+    }
 
     
    
     
     let time = [
-      hour9 = $('<div>').attr('id', 'hour-9'),
-      hour10 = $('<div>').attr('id', 'hour-10'),
-      hour11 = $('<div>').attr('id', 'hour-11'),
-      hour12 = $('<div>').attr('id', 'hour-12'),
-      hour13 = $('<div>').attr('id', 'hour-13'),
-      hour14 = $('<div>').attr('id', 'hour-14'),
-      hour15 = $('<div>').attr('id', 'hour-15'),
-      hour16 = $('<div>').attr('id', 'hour-16'),
-      hour17 = $('<div>').attr('id', 'hour-17'),
+      $('#hour-9'),
+      $('#hour-10'),
+      $('#hour-11'),
+      $('#hour-12'),
+      $('#hour-13'),
+      $('#hour-14'),
+      $('#hour-15'),
+      $('#hour-16'),
+      $('#hour-17'),
+
     ]
 
     for (let i = 0; i < time.length; i++){
     
-      let hour = time[i].attr('id');
-      hour = hour.replace('hour-', '');
+       let hour = time[i].attr('id');
+       hour = hour.replace('hour-', '');
       
         if (hour < dayjs().hour()) {
         time[i].removeClass('future');
@@ -68,7 +82,7 @@ $(document).ready(function () {
         console.log('didnt work');
       
       }
-      time[i].addClass('test');
+      time[i].find('textarea').val(loadLocalData(hour));
     }
    
       
