@@ -16,8 +16,6 @@ $(document).ready(function () {
     let x = $('#' + divId).find('textarea').val();
 
     localStorage.setItem(divId, x);
-    console.log(divId);
-    console.log(x);
     })
 
     function loadLocalData(t) {
@@ -51,7 +49,7 @@ $(document).ready(function () {
         time[i].removeClass('future');
         time[i].removeClass('present');
         time[i].addClass('past');
-        console.log('past');
+       
   
       } else if (hour == dayjs().hour())
       {
@@ -68,7 +66,7 @@ $(document).ready(function () {
         console.log('future');
   
       } else {
-        console.log('didnt work');
+        
       
       }
       time[i].find('textarea').val(loadLocalData(hour));
